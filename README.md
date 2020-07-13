@@ -1,7 +1,7 @@
 BIKESHARE
 Date Created
 
-13-07-2020
+12-07-2020
 
 Introduction
 
@@ -9,7 +9,7 @@ Python Script to Explore US Bike share Data
 
 Description
 
-This project focuses on python and it's libraries to perform simple statistics, analysis on the bike share data from three major U.S. cities - Chicago, Washington, and New York City.
+The project focuses on python and it's libraries to perform simple statistics, analysis on the bike share data from three major U.S. cities - Chicago, Washington, and New York City.
 
 Files
 
