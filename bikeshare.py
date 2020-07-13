@@ -7,6 +7,7 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'washington': 'washington.csv' }
 
 def get_filters():
+    """Udacity Bikeshare Nanodegree Program """
     """
     Asks user to specify a city, month, and day to analyze.
 
@@ -16,8 +17,8 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
-    # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-    
+    # TO DO: get user input for city (chicago, new york city, washington).
+
     while True:
         city = input ("\nPlease enter the city that you want to filter(Washington,New York,Chicago)?\n)").lower()
         if city not in ('washington','new york','chicago'):
@@ -60,20 +61,20 @@ def load_data(city, month, day):
         df - Pandas DataFrame containing city data filtered by month and day
     """
     df = pd.read_csv(CITY_DATA[city])
-    
+
     df['Start Time'] = pd.to_datetime(df['Start Time'])
     df['month'] = df['Start Time'].dt.month
     df['day_of_week'] = df['Start Time'].dt.weekday_name
-    
+
     if month != 'all':
         months = ['January', 'February', 'March', 'April', 'May', 'June']
         month = months.index(month) + 1
-        
+
         df = df[df['month'] == month]
-    
+
     if day != 'all':
         df = df[df['day_of_week'] == day.title()]
-    
+
     return df
 
 
@@ -111,13 +112,13 @@ def station_stats(df):
     # TO DO: display most commonly used start station
     common_start_station = df['Start Station'].value_counts().idxmax()
     print("Most Commmon Start Station:",common_start_station)
-    
+
     # TO DO: display most commonly used end station
     common_end_station = df['End Station'].value_counts().idxmax()
     print("Most Common End Station:",common_end_station)
 
     # TO DO: display most frequent combination of start station and end station trip
-    
+
     start_stop_station = df.groupby(['Start Time','End Time']).count().idxmax()[1]
     print("Most Frequent Combination of start and end station trip",start_stop_station)
 
@@ -139,7 +140,7 @@ def trip_duration_stats(df):
     # TO DO: display mean travel time
     mean_travel_time = df['Trip Duration'].mean()
     print("Mean Travel Time",mean_travel_time)
-    
+
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -165,28 +166,28 @@ def user_stats(df):
 
 
     # TO DO: Display earliest, most recent, and most common year of birth
-    
 
-    try:    
+
+    try:
         earliest_birth_year = df['Birth Year'].min()
         print("\nEarliest Birth Year: ",earliest_birth_year)
-        
+
         recent_birth_year = df['Birth Year'].max()
         print("\nRecent Birth Year: ",recent_birth_year)
-        
-        
+
+
         common_birth_year = df['Birth Year'].mode()
         print("\nCommon Birth Year: ",common_birth_year)
-        
+
     except KeyError:
         print("\n No Data Available")
-         
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
-    
+
+
 def display_raw_data(df):
-    
+
     row_index = 0
 
     see_data = input("\nYou like to see the data used to compute the stats? Please write 'yes' or 'no' \n").lower()
